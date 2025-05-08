@@ -16,7 +16,7 @@ services:
       - 8989:8989  # Sonarr WebUI
       - 8686:8686  # Lidarr WebUI
       - 9696:9696  # Prowlarr WebUI
-      - 5055:5055  # Overseerr WebUI
+      - 5055:5055  # Jellyseerr WebUI
       - 7575:7575  # Homarr WebUI
     restart: unless-stopped
     networks:
@@ -104,14 +104,14 @@ services:
     restart: unless-stopped
 
   overseerr:
-    image: sctx/overseerr
-    container_name: overseerr
+    image: sctx/jellyseerr 
+    container_name: jellyseerr
     environment:
       - PUID=1001
       - PGID=545
       - TZ=America/New_York
     volumes:
-      - E:\media-server\overseerr\config:/app/config
+      - E:\media-server\jellyseerr\config:/app/config
     depends_on:
       - nordvpn
     network_mode: "service:nordvpn"
