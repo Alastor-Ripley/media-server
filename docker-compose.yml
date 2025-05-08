@@ -34,8 +34,8 @@ services:
       - TZ=America/New_York
       - WEBUI_PORT=8080
     volumes:
-      - E:\media-server\qbittorrent\config:/config
-      - E:\media-server\downloads:/downloads
+      - /home/alastor/.config/qbittorrent/config:/config
+      - /mnt/John-Hurt/downloads:/downloads
     depends_on:
       - nordvpn
     network_mode: "service:nordvpn"
@@ -49,9 +49,9 @@ services:
       - PGID=545
       - TZ=America/New_York
     volumes:
-      - E:\media-server\radarr\config:/config
-      - E:\Plex\Movies:/movies
-      - E:\media-server\downloads:/downloads
+      - /home/alastor/.config/radarr/config:/config
+      - /mnt/Paul-McGann/Videos/Movies:/movies
+      - /mnt/John-Hurt/downloads:/downloads
     depends_on:
       - nordvpn
     network_mode: "service:nordvpn"
@@ -65,9 +65,9 @@ services:
       - PGID=545
       - TZ=America/New_York
     volumes:
-      - E:\media-server\sonarr\config:/config
-      - E:\media-server\downloads:/downloads
-      - E:\Plex\TV:/tv
+      - /home/alastor/.config/sonarr/config:/config
+      - /mnt/John-Hurt/downloads:/downloads
+      - /mnt/Paul-McGann/Videos/TV:/tv
     depends_on:
       - nordvpn
     network_mode: "service:nordvpn"
@@ -81,9 +81,9 @@ services:
       - PGID=545
       - TZ=America/New_York
     volumes:
-      - E:\media-server\lidarr\config:/config
-      - E:\media-server\downloads:/downloads
-      - E:\Plex\Music:/music
+      - /home/alastor/.config/lidarr/config:/config
+      - /mnt/John-Hurt/downloads:/downloads
+      - /mnt/Paul-McGann/Music:/music
     depends_on:
       - nordvpn
     network_mode: "service:nordvpn"
@@ -97,21 +97,22 @@ services:
       - PGID=545
       - TZ=America/New_York
     volumes:
-      - E:\media-server\prowlarr\config:/config
+      - /home/alastor/.config/prowlarr/config:/config
     depends_on:
       - nordvpn
     network_mode: "service:nordvpn"
     restart: unless-stopped
 
   overseerr:
-    image: sctx/jellyseerr 
+    image: ghcr.io/fallenbagel/jellyseerr:latest 
     container_name: jellyseerr
     environment:
       - PUID=1001
       - PGID=545
       - TZ=America/New_York
+      - PORT=5055
     volumes:
-      - E:\media-server\jellyseerr\config:/app/config
+      - /home/alastor/.config/jellyseerr/config:/app/config
     depends_on:
       - nordvpn
     network_mode: "service:nordvpn"
@@ -125,7 +126,7 @@ services:
       - PGID=545
       - TZ=America/New_York
     volumes:
-      - E:\media-server\homarr\config:/config
+      - /home/alastor/.config/homarr/config:/config
     depends_on:
       - nordvpn
     network_mode: "service:nordvpn"
